@@ -1,39 +1,48 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import * as cheerio from "cheerio";
+import { Ollama } from "ollama";
 
 interface ScrapeRequestBody {
   url: string;
 }
 
-interface OllamaResponse {
-  response?: string;
-}
+const ollama = new Ollama({
+  host: process.env.OLLAMA_API_ENDPOINT || "http://localhost:11434",
+});
 
 async function summarize(text: string, url: string): Promise<string> {
-  const response = await fetch(
-    `${process.env.OLLAMA_API_ENDPOINT}/api/generate`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+  try {
+    const response = await ollama.generate({
+      model: "llama3.2:3b",
+      prompt: `You are a professional content summarizer. 
+
+Website: ${url}
+
+Content to summarize:
+${text} 
+
+Instructions:
+- Create a concise summary in markdown format
+- Use bullet points for key information
+- Highlight the main topics and important details
+- Keep it clear and well-organized
+- If the content is too long, focus on the most important parts
+
+Summary:`,
+      stream: false,
+      options: {
+        temperature: 0.3, // Lower temperature for more focused summaries
+        top_p: 0.9,
+        num_predict: 500, // Limit response length
       },
-      body: JSON.stringify({
-        // model: "qwen2.5:1.5b",
-        prompt: `I have scraped from ${url},so Summarize the following text concisely in markdown format with bullet points:\n\n${text}`,
-        model: "llama3.2:3b",
-        stream: false,
-      }),
-    },
-  );
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Ollama request failed: ${response.status} ${errorText}`);
+    return response.response.trim();
+  } catch (error) {
+    console.error("Ollama summarization error:", error);
+    throw new Error(`Summarization failed: ${(error as Error).message}`);
   }
-
-  const data: OllamaResponse = await response.json();
-  return data.response?.trim() ?? "";
 }
 
 export async function POST(request: NextRequest) {
@@ -57,11 +66,6 @@ export async function POST(request: NextRequest) {
   try {
     const pageRes = await fetch(url, {
       signal: controller.signal,
-      // headers: {
-      //   "User-Agent":
-      //     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-      // },
-
       headers: {
         "User-Agent":
           "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120 Safari/537.36",
@@ -98,16 +102,17 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       );
     }
-    // console.log(textContent);
 
     const summary = await summarize(textContent, url);
 
     return NextResponse.json({ summary });
   } catch (err: unknown) {
     clearTimeout(timeout);
+
     if ((err as Error).name === "AbortError") {
       return NextResponse.json({ error: "Request timeout" }, { status: 408 });
     }
+
     console.error("Scraping error:", err);
     return NextResponse.json(
       { error: (err as Error).message || "Scraping failed" },

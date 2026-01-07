@@ -59,9 +59,12 @@ Before you begin, ensure you have the following installed:
 
 4. **Pull an Ollama Model:**
 
-   Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b` or `mistral`).
+   Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b`).
 
    ```bash
+   # Run ollama first if not running already
+   ollama serve &
+   # Pull the model
    ollama pull llama3.2:3b
    ```
 

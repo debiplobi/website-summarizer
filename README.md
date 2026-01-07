@@ -1,6 +1,6 @@
 # Website Summarizer
 
-A generic website summarizer built with Next.js and Mantine, leveraging local LLMs via Ollama to generate concise summaries of web content.
+A website summarizer built with Next.js(React), leveraging local LLMs via Ollama to generate concise summaries of web content.
 
 ## Features
 
@@ -11,10 +11,10 @@ A generic website summarizer built with Next.js and Mantine, leveraging local LL
 
 ## Tech Stack
 
-- **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+- **Framework**: [Next.js 16.1.1](https://nextjs.org/) (App Router)
 - **UI Library**: [Mantine](https://mantine.dev/)
 - **Scraping**: Cheerio
-- **AI/LLM**: Ollama (Local)
+- **AI/LLM**: Ollama (Local/Self-hosted)
 - **Language**: TypeScript
 
 ## Prerequisites
@@ -22,7 +22,7 @@ A generic website summarizer built with Next.js and Mantine, leveraging local LL
 Before you begin, ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/) (v18 or higher)
-- [Ollama](https://ollama.com/) (running locally)
+- [Ollama](https://ollama.com/) (running locally/self-hosted)
 
 ## Installation
 
@@ -51,7 +51,7 @@ Before you begin, ensure you have the following installed:
    cp example.env .env
    ```
 
-   Edit `.env` if your Ollama instance is running on a different port (default is `http://localhost:11434`).
+   Edit `.env` if your Ollama instance is running on a different port or server (default is `http://localhost:11434`).
 
    ```env
    OLLAMA_API_ENDPOINT=http://localhost:11434
@@ -59,10 +59,10 @@ Before you begin, ensure you have the following installed:
 
 4. **Pull an Ollama Model:**
 
-   Make sure you have a model pulled in Ollama (e.g., `llama3` or `mistral`).
+   Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b` or `mistral`).
 
    ```bash
-   ollama pull llama3
+   ollama pull llama3.2:3b
    ```
 
 ## Running the Application
@@ -71,6 +71,8 @@ Before you begin, ensure you have the following installed:
 
    ```bash
    npm run dev
+   # or
+   yarn dev
    ```
 
 2. **Open the application:**
@@ -88,9 +90,10 @@ To create a production build:
 
 ```bash
 npm run build
+# or
+yarn build
+
 npm run start
+# or
+yarn start
 ```
-
-## License
-
-[MIT](LICENSE)

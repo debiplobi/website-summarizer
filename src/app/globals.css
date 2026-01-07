@@ -1,7 +1,8 @@
-.button {
-  &:disabled,
-  &[data-disabled] {
-    border-color: #282828;
-    background-color: #282828;
-  }
-}
+/* .button { */
+/*   &:disabled, */
+/*   &[data-disabled] { */
+/*     border-color: #282828; */
+/*     background-color: #282828; */
+/*   } */
+/* } */
+

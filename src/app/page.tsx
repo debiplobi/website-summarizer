@@ -12,7 +12,7 @@ import {
   useComputedColorScheme,
 } from "@mantine/core";
 import { IconSun, IconMoon } from "@tabler/icons-react";
-import Markdown from "markdown-to-jsx";
+import TypingMarkdown from "./TypingMarkdown";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");
@@ -119,6 +119,7 @@ export default function HomePage() {
         {result && (
           <div
             style={{
+              minHeight: "100vh",
               marginTop: 20,
               padding: "20px",
               background:
@@ -137,7 +138,7 @@ export default function HomePage() {
               overflowX: "auto",
             }}
           >
-            <Markdown>{result}</Markdown>
+            <TypingMarkdown text={result} />
           </div>
         )}
       </Stack>

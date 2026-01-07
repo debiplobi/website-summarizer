@@ -12,7 +12,7 @@ import {
   useComputedColorScheme,
 } from "@mantine/core";
 import { IconSun, IconMoon } from "@tabler/icons-react";
-import TypingMarkdown from "./TypingMarkdown";
+import TypingMarkdown from "./components/TypingMarkdown";
 
 export default function HomePage() {
   const [url, setUrl] = useState("");

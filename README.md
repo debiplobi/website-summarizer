@@ -17,6 +17,27 @@ A website summarizer built with Next.js(React), leveraging local LLMs via Ollama
 - **AI/LLM**: Ollama (Local/Self-hosted)
 - **Language**: TypeScript
 
+## AI Integration
+
+### Core Engine: Ollama
+
+The project relies on **Ollama**, an open-source platform for running Large Language Models (LLMs) locally. This ensures **privacy** and **local inference** without third-party cloud dependencies.
+
+### Summarization Workflow
+
+1.  **Cheerio** scrapes the website content.
+2.  **Ollama** processes the text to create a concise summary.
+
+### AI Models
+
+- **Default**: `llama3.2:3b` (Selected for its balance of speed and accuracy).
+- **Flexibility**: You can use other models by pulling them in Ollama.
+
+### Deployment Interaction
+
+- **Docker**: Automatically pulls `llama3.2:3b`.
+- **Manual**: Connects to `OLLAMA_API_ENDPOINT` (default: `http://localhost:11434`).
+
 ## Docker (Recommended)
 
 ### Prerequisites
@@ -46,7 +67,9 @@ Before you begin, ensure you have **Docker** and **docker compose** installed.
 
 Before you begin, ensure you have the following installed:
 
-- [Ollama](https://ollama.com/) (locally native / inside docker / self-hosted)
+- [Ollama](https://ollama.com/) (locally native / inside docker / self-hosted )
+
+  > **Note:** If you run Ollama natively you, can get summarizations much faster
 
 ### Installation
 
@@ -83,16 +106,16 @@ Before you begin, ensure you have the following installed:
 
 4. **Pull an Ollama Model:**
 
-- \*Note: Alternatively You can also run use ollama inside docker or remote server.
+  > **Note:** Alternatively You can also run ollama inside docker or remote server.
 
-   Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b`).
+  Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b`).
 
-   ```bash
-   # Run ollama first if not running already
-   ollama serve &
-   # Pull the model
-   ollama pull llama3.2:3b
-   ```
+  ```bash
+  # Run ollama first if not running already
+  ollama serve &
+  # Pull the model
+  ollama pull llama3.2:3b
+  ```
 
 ## Running the Application
 

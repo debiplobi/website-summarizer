@@ -176,21 +176,29 @@ export default function TypingMarkdown({ text, speed = 20 }: Props) {
   const [displayed, setDisplayed] = useState("");
 
   useEffect(() => {
-    if (!text) return;
+    if (!text) {
+      setDisplayed("");
+      return;
+    }
+
+    setDisplayed(""); // clear previous
 
     let i = 0;
-    setDisplayed("");
+    let timer: ReturnType<typeof setTimeout>;
 
-    const interval = setInterval(() => {
-      setDisplayed((prev) => prev + text[i]);
-      i++;
-
-      if (i >= text.length) {
-        clearInterval(interval);
+    function tick() {
+      if (i < text.length) {
+        // capture the correct character at this moment
+        const char = text[i];
+        setDisplayed((prev) => prev + char);
+        i++;
+        timer = setTimeout(tick, speed);
       }
-    }, speed);
+    }
 
-    return () => clearInterval(interval);
+    tick();
+
+    return () => clearTimeout(timer);
   }, [text, speed]);
 
   return <Markdown options={markdownOptions}>{displayed}</Markdown>;

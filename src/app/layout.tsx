@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Rubik, Saira } from "next/font/google";
 import "./globals.css";
 
 import "@mantine/core/styles.css";
@@ -11,19 +11,13 @@ import {
 } from "@mantine/core";
 import { theme } from "./theme";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const rubik = Rubik({
+  variable: "--font-rubik",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const poppins = Poppins({
-  weight: "400",
-  variable: "--font-poppins",
+const saira = Saira({
+  variable: "--font-saira",
   subsets: ["latin"],
 });
 
@@ -42,9 +36,7 @@ export default function RootLayout({
       <head>
         <ColorSchemeScript />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
-      >
+      <body className={`${rubik.variable} ${saira.variable} antialiased`}>
         <MantineProvider theme={theme}>{children}</MantineProvider>
       </body>
     </html>

@@ -71,7 +71,7 @@ export default function HomePage() {
           alignItems: "center",
         }}
       >
-        <Title order={1} style={{ fontSize: "1.5rem" }}>
+        <Title order={1} style={{ fontSize: "2rem" }}>
           Website Summarizer
         </Title>
 

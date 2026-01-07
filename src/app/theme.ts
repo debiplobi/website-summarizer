@@ -50,7 +50,7 @@ export const theme = createTheme({
   luminanceThreshold: 0.3,
 
   /* ---------------- Typography ---------------- */
-  fontFamily: "Poppins",
+  fontFamily: "Saira",
   fontFamilyMonospace: "JetBrains Mono, monospace",
 
   fontSizes: {
@@ -70,7 +70,7 @@ export const theme = createTheme({
   },
 
   headings: {
-    fontFamily: "Poppins",
+    fontFamily: "Saira",
     fontWeight: "600",
   },
 

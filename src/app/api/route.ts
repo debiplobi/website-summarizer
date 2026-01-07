@@ -8,7 +8,7 @@ interface ScrapeRequestBody {
 }
 
 const ollama = new Ollama({
-  host: process.env.OLLAMA_API_ENDPOINT || "http://localhost:11434",
+  host: process.env.OLLAMA_API_ENDPOINT,
 });
 
 async function summarize(text: string, url: string): Promise<string> {

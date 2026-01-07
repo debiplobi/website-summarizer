@@ -17,14 +17,36 @@ A website summarizer built with Next.js(React), leveraging local LLMs via Ollama
 - **AI/LLM**: Ollama (Local/Self-hosted)
 - **Language**: TypeScript
 
-## Prerequisites
+## Docker(Easiest):
+
+### Prerequisites
+
+Before you begin, ensure you have **Docker** and **docker compose** installed:
+
+1. **Clone the repository:**
+
+   ```bash
+   git clone https://github.com/debiplobi/website-summarizer
+   cd website-summarizer
+   ```
+
+1. **Build and run the dockerfile**
+
+   ```bash
+   docker compose up
+   # or run as detached
+   docker compose up -d
+   ```
+
+## Manual method:
+
+### Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [Ollama](https://ollama.com/) (running locally/self-hosted)
+- [Ollama](https://ollama.com/) (locally natively / inside docker / inside self-hosted server)
 
-## Installation
+### Installation
 
 1. **Clone the repository:**
 
@@ -59,14 +81,16 @@ Before you begin, ensure you have the following installed:
 
 4. **Pull an Ollama Model:**
 
-   Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b`).
+- \*Note: Alternatively You can also run use ollama inside docker.
 
-   ```bash
-   # Run ollama first if not running already
-   ollama serve &
-   # Pull the model
-   ollama pull llama3.2:3b
-   ```
+  Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b`).
+
+  ```bash
+  # Run ollama first if not running already
+  ollama serve &
+  # Pull the model
+  ollama pull llama3.2:3b
+  ```
 
 ## Running the Application
 

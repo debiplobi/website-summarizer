@@ -53,6 +53,7 @@ export default function TypingMarkdown({ text, speed = 20 }: Props) {
                   background: "#2d2d2d",
                   color: "#f8f8f2",
                   padding: "12px",
+                  paddingLeft: "12px",
                   borderRadius: "5px",
                   overflow: "auto",
                   fontFamily: "'Courier New', Consolas, Monaco, monospace",

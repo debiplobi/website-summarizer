@@ -17,11 +17,11 @@ A website summarizer built with Next.js(React), leveraging local LLMs via Ollama
 - **AI/LLM**: Ollama (Local/Self-hosted)
 - **Language**: TypeScript
 
-## Docker(Easiest):
+## Docker (Recommended)
 
 ### Prerequisites
 
-Before you begin, ensure you have **Docker** and **docker compose** installed:
+Before you begin, ensure you have **Docker** and **docker compose** installed.
 
 1. **Clone the repository:**
 
@@ -30,7 +30,7 @@ Before you begin, ensure you have **Docker** and **docker compose** installed:
    cd website-summarizer
    ```
 
-1. **Build and run the dockerfile**
+2. **Build and run with docker compose:**
 
    ```bash
    docker compose up
@@ -38,13 +38,15 @@ Before you begin, ensure you have **Docker** and **docker compose** installed:
    docker compose up -d
    ```
 
-## Manual method:
+   > **Note:** The Docker setup automatically pulls the required Ollama model (`llama3.2:3b`) when the container starts.
+
+## Manual Setup
 
 ### Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- [Ollama](https://ollama.com/) (locally natively / inside docker / inside self-hosted server)
+- [Ollama](https://ollama.com/) (locally native / inside docker / self-hosted)
 
 ### Installation
 
@@ -81,16 +83,16 @@ Before you begin, ensure you have the following installed:
 
 4. **Pull an Ollama Model:**
 
-- \*Note: Alternatively You can also run use ollama inside docker.
+- \*Note: Alternatively You can also run use ollama inside docker or remote server.
 
-  Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b`).
+   Make sure you have a model pulled in Ollama (e.g., `llama3.2:3b`).
 
-  ```bash
-  # Run ollama first if not running already
-  ollama serve &
-  # Pull the model
-  ollama pull llama3.2:3b
-  ```
+   ```bash
+   # Run ollama first if not running already
+   ollama serve &
+   # Pull the model
+   ollama pull llama3.2:3b
+   ```
 
 ## Running the Application
 

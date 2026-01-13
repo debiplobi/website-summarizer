@@ -44,6 +44,9 @@ Summary:`,
     throw new Error(`Summarization failed: ${(error as Error).message}`);
   }
 }
+export async function GET() {
+  return NextResponse.json({ success: "backend is running" });
+}
 
 export async function POST(request: NextRequest) {
   let body: ScrapeRequestBody;
